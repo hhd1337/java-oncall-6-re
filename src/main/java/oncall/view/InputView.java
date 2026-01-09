@@ -7,4 +7,8 @@ public class InputView {
     public String inputMonthDay() {
         return Console.readLine();
     }
+
+    public String inputOrderedWeekDayOncallCrews() {
+        return Console.readLine();
+    }
 }

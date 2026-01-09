@@ -34,7 +34,7 @@ public class InputHandler {
                     value = value.trim(); // 5,월
                     List<String> parsedFirst = parser.parse(value); // 5랑 월이랑 분리됨.
 
-                    int monthInt = intConverter.convert(parsedFirst.getFirst());  // 5
+                    int monthInt = intConverter.convert(parsedFirst.get(0));  // 5
                     if (monthInt < 1 || monthInt > 12) {
                         throw new IllegalArgumentException("월은 1부터 12사이의 값이어야 합니다. 다시 입력해 주세요.");
                     }
@@ -51,4 +51,39 @@ public class InputHandler {
                 }
         );
     }
+
+    public List<String> inputOrderedWeekDayOncallCrews() {
+        DelimiterParser parser = new DelimiterParser();
+        return inputTemplate.execute(
+                inputView::inputOrderedWeekDayOncallCrews,
+                value -> {
+                    value = value.trim();
+                    List<String> parsedCrewNames = parser.parse(value);
+                    validateCrewNames(parsedCrewNames);
+
+                    return parsedCrewNames;
+                }
+        );
+    }
+
+    private void validateCrewNames(List<String> parsedCrewNames) {
+        int crewNameListSize = parsedCrewNames.size();
+
+        //- 예외) 닉네임이 중복 입력된 경우
+        long distinctNameCount = parsedCrewNames.stream().distinct().count();
+        if (distinctNameCount < crewNameListSize) {
+            throw new IllegalArgumentException("중복된 닉네임이 존재합니다. 다시 입력해주세요.");
+        }
+        //- 예외) 5자 초과인 닉네임이 존재할 경우
+        parsedCrewNames.forEach(name -> {
+            if (name.length() > 5) {
+                throw new IllegalArgumentException("5자 초과인 닉네임이 존재합니다. 닉네임은 5자 이하여야 합니다.");
+            }
+        });
+        //- 예외) 닉네임이 5명 미만 혹은 35명 초과일 경우
+        if (crewNameListSize < 5 || crewNameListSize > 35) {
+            throw new IllegalArgumentException("닉네임이 5명 미만 혹은 35명 초과로 입력되었습니다.");
+        }
+    }
+
 }

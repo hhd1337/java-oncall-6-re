@@ -1,5 +1,6 @@
 package oncall.controller;
 
+import java.util.List;
 import oncall.domain.OncallResult;
 import oncall.view.OutputView;
 
@@ -17,6 +18,8 @@ public class OncallController {
         outputView.printMonthDayInputPrompt();
         OncallResult oncallResult = inputHandler.inputMonthDay();
 
+        outputView.printWeekDayInputPrompt();
+        List<String> weekDayCrewNames = inputHandler.inputOrderedWeekDayOncallCrews();
 
     }
 
