@@ -44,7 +44,7 @@ public class InputHandler {
 
                     for (int date = 1; date <= lastDayOfMonth; date++) {
                         dailyOncallList.add(
-                                new DailyOncall(monthInt, dow.plus(date - 1), Holiday.isHoliDay(monthInt, date)));
+                                new DailyOncall(monthInt, date, dow.plus(date - 1), Holiday.isHoliDay(monthInt, date)));
                     }
 
                     return new OncallResult(dailyOncallList);

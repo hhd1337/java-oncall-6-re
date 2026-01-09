@@ -10,10 +10,6 @@ public class OncallResult {
         this.dailyOncallList = dailyOncallList;
     }
 
-    public void addDailyOncall(DailyOncall dailyOncall) {
-        dailyOncallList.add(dailyOncall);
-    }
-
     public List<DailyOncall> putCrewsInDailyOncallList(List<String> weekdayCrews, List<String> weekendCrews) {
         int weekdayCrewsIndex = 0;
         int weekendCrewsIndex = 0;
@@ -57,6 +53,10 @@ public class OncallResult {
             }
         }
 
+        return dailyOncallList;
+    }
+
+    public List<DailyOncall> getDailyOncallList() {
         return dailyOncallList;
     }
 }

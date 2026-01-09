@@ -1,6 +1,8 @@
 package oncall.controller;
 
+import java.time.DayOfWeek;
 import java.util.List;
+import oncall.domain.DailyOncall;
 import oncall.domain.OncallResult;
 import oncall.view.OutputView;
 
@@ -25,6 +27,19 @@ public class OncallController {
         List<String> weekEndCrewNames = inputHandler.inputOrderedWeekEndOncallCrews();
 
         oncallResult.putCrewsInDailyOncallList(weekDayCrewNames, weekEndCrewNames);
-        
+
+        printOncallResult(oncallResult);
+    }
+
+    private void printOncallResult(OncallResult oncallResult) {
+        for (DailyOncall dailyOncall : oncallResult.getDailyOncallList()) {
+            int MonthInt = dailyOncall.getMonthInt();
+            int DayOfMonth = dailyOncall.getDayOfMonth();
+            DayOfWeek DayOfWeek = dailyOncall.getDayOfWeek();
+            String crewName = dailyOncall.getCrewName();
+            boolean isWeekDayAndHoliday = dailyOncall.isWeekDayAndHoliday();
+
+            outputView.printDailyOncallResult(MonthInt, DayOfMonth, DayOfWeek, crewName, isWeekDayAndHoliday);
+        }
     }
 }
