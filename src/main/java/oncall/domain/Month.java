@@ -31,10 +31,6 @@ public enum Month {
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 형식을 입력하였습니다."));
     }
 
-    public int getSymbol() {
-        return this.symbol;
-    }
-
     public int getLastDayInMonth() {
         return lastDayInMonth;
     }

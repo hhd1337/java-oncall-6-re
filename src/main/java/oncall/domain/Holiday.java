@@ -27,16 +27,4 @@ public enum Holiday {
                 .anyMatch(holiday -> holiday.monthInt == monthInt
                         && holiday.dayOfMonth == dayOfMonth);
     }
-
-    public int getMonthInt() {
-        return monthInt;
-    }
-
-    public int getDayOfMonth() {
-        return dayOfMonth;
-    }
-
-    public String getHolidayKor() {
-        return holidayKor;
-    }
 }
