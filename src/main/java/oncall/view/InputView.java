@@ -11,4 +11,8 @@ public class InputView {
     public String inputOrderedWeekDayOncallCrews() {
         return Console.readLine();
     }
+
+    public String inputOrderedWeekEndOncallCrews() {
+        return Console.readLine();
+    }
 }

@@ -66,6 +66,20 @@ public class InputHandler {
         );
     }
 
+    public List<String> inputOrderedWeekEndOncallCrews() {
+        DelimiterParser parser = new DelimiterParser();
+        return inputTemplate.execute(
+                inputView::inputOrderedWeekEndOncallCrews,
+                value -> {
+                    value = value.trim();
+                    List<String> parsedCrewNames = parser.parse(value);
+                    validateCrewNames(parsedCrewNames);
+
+                    return parsedCrewNames;
+                }
+        );
+    }
+
     private void validateCrewNames(List<String> parsedCrewNames) {
         int crewNameListSize = parsedCrewNames.size();
 
