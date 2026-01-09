@@ -10,7 +10,10 @@ public class OncallResult {
         this.dailyOncallList = dailyOncallList;
     }
 
-    public List<DailyOncall> putCrewsInDailyOncallList(List<String> weekdayCrews, List<String> weekendCrews) {
+    public List<DailyOncall> putCrewsInDailyOncallList(CrewOrders crewOrders) {
+        List<String> weekdayCrews = crewOrders.getWeekDayCrewNames();
+        List<String> weekendCrews = crewOrders.getWeekEndCrewNames();
+
         int weekdayCrewsIndex = 0;
         int weekendCrewsIndex = 0;
         //- 조건) 비상근무자는 어떤 경우에도 연속 2일 근무할 수 없다.
